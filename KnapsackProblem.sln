@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.ConsoleApp", "KnapsackProblem.ConsoleApp\KnapsackProblem.ConsoleApp.csproj", "{9854EDB0-37DB-4625-8F63-A6EF6EF25C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnapsackProblem.ConsoleApp", "KnapsackProblem.ConsoleApp\KnapsackProblem.ConsoleApp.csproj", "{9854EDB0-37DB-4625-8F63-A6EF6EF25C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.Solver", "KnapsackProblem.Solver\KnapsackProblem.Solver.csproj", "{ABD7DF19-B81C-44DD-8BB3-28AD4A429209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnapsackProblem.Solver", "KnapsackProblem.Solver\KnapsackProblem.Solver.csproj", "{ABD7DF19-B81C-44DD-8BB3-28AD4A429209}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{7A1BC281-9A81-49B5-9414-1007AE992FC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1B811B64-2DE3-45F4-99E7-320A35325F0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.Solver.Tests", "KnapsackProblem.Solver.Tests\KnapsackProblem.Solver.Tests.csproj", "{4E179712-8B4B-46BB-B73D-85396F17A429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnapsackProblem.Solver.Tests", "KnapsackProblem.Solver.Tests\KnapsackProblem.Solver.Tests.csproj", "{4E179712-8B4B-46BB-B73D-85396F17A429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.InputGenerator", "KnapsackProblem.InputGenerator\KnapsackProblem.InputGenerator.csproj", "{5BEAB05D-101A-45FB-A706-A99D91527A49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.InputGenerator.ConsoleApp", "KnapsackProblem.InputGenerator.ConsoleApp\KnapsackProblem.InputGenerator.ConsoleApp.csproj", "{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,14 @@ Global
 		{4E179712-8B4B-46BB-B73D-85396F17A429}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E179712-8B4B-46BB-B73D-85396F17A429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E179712-8B4B-46BB-B73D-85396F17A429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BEAB05D-101A-45FB-A706-A99D91527A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BEAB05D-101A-45FB-A706-A99D91527A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BEAB05D-101A-45FB-A706-A99D91527A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BEAB05D-101A-45FB-A706-A99D91527A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +51,8 @@ Global
 		{9854EDB0-37DB-4625-8F63-A6EF6EF25C45} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
 		{ABD7DF19-B81C-44DD-8BB3-28AD4A429209} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
 		{4E179712-8B4B-46BB-B73D-85396F17A429} = {1B811B64-2DE3-45F4-99E7-320A35325F0C}
+		{5BEAB05D-101A-45FB-A706-A99D91527A49} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
+		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54E29528-34DA-4D5D-8D8E-E5E648EBA887}
