@@ -16,7 +16,5 @@
         public double Weight { get; set; }
 
         public double Value { get; set; }
-
-
     }
 }

@@ -12,6 +12,7 @@
         [TestCase(10)]
         [TestCase(20)]
         [TestCase(30)]
+        [TestCase(50)]
         public void Solve_ReturnsCorrectResult(int numberOfGenerations)
         {
             var options = SolverOptions.Default;

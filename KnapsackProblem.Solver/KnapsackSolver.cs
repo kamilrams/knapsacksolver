@@ -31,9 +31,10 @@
             for (var i = 0; i < this.options.NumberOfGenerations; i++)
             {
                 var ratedChromosomes = CalculateFitnessScore(this.itemsDatabase, currentPopulation, input);
-                
-                var parentSelector = new ParentSelector(this.random);
-                var parentsPool = parentSelector.SelectParents(ratedChromosomes);
+
+                var maximumParentsCount = this.options.PopulationSize / 2;
+                var parentSelector = new ParentSelector();
+                var parentsPool = parentSelector.SelectParents(ratedChromosomes, maximumParentsCount);
 
                 var crossover = new Crossover(this.random, this.options);
                 var childrens = crossover.GetResults(parentsPool);
