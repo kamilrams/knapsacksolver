@@ -26,5 +26,14 @@
             this.KnapsackCapacity = solverInput.KnapsackCapacity;
             this.AvailableItems.AddRange(availableItems);
         }
+
+        public SolverInput ToModel()
+        {
+            return new SolverInput
+            {
+                KnapsackCapacity = this.KnapsackCapacity,
+                AvailableItems = this.AvailableItems.Select(item => item.ToModel()).ToList()
+            };
+        }
     }
 }

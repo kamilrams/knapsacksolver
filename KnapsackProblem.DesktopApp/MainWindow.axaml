@@ -55,7 +55,8 @@
 			<TextBlock Grid.Row="6" Text="Solver runner" />
 
 			<Border Grid.Row="7" Classes="InputSection">
-				<Button Content="Run solver" />
+				<Button Content="Run solver"
+						Command="{Binding SolverRunner.RunSolverCommand}" />
 			</Border>
 		</Grid>
 		

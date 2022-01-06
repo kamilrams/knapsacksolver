@@ -44,5 +44,10 @@
         public KnapsackItemViewModel()
         {
         }
+
+        public KnapsackItem ToModel()
+        {
+            return new KnapsackItem(this.Name, this.Weight, this.Value);
+        }
     }
 }

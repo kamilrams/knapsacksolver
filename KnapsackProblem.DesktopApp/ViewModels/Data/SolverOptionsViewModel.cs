@@ -51,5 +51,17 @@
             this.MutationProbability = solverOptions.MutationProbability;
             this.RandomSeed = solverOptions.RandomSeed;
         }
+
+        public SolverOptions ToModel()
+        {
+            return new SolverOptions
+            {
+                NumberOfGenerations = this.NumberOfGenerations,
+                PopulationSize = this.PopulationSize,
+                CrossoverProbability = this.CrossoverProbability,
+                MutationProbability = this.MutationProbability,
+                RandomSeed = this.RandomSeed
+            };
+        }
     }
 }

@@ -16,7 +16,7 @@
 
         public SolverInputViewModel SolverInput { get; }
 
-        public AvaloniaList<GenerationViewModel> SolverResults { get; } = new AvaloniaList<GenerationViewModel>();
+        public SolverRunnerViewModel SolverRunner { get; }
 
         public MainWindowViewModel()
         {
@@ -36,6 +36,7 @@
 
             this.SolverOptions = new SolverOptionsViewModel(solverOptions);
             this.SolverInput = new SolverInputViewModel(solverInput);
+            this.SolverRunner = new SolverRunnerViewModel(this.SolverOptions, this.SolverInput);
         }
     }
 }
