@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:KnapsackProblem.DesktopApp.ViewModels.Data"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="KnapsackProblem.DesktopApp.Views.SolverInputView"
+			 x:DataType="vm:SolverInputViewModel">
+	<UserControl.Styles>
+		<Style Selector="Label">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="0,0,10,0" />
+		</Style>
+	</UserControl.Styles>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<!-- Knapsack capacity -->
+		<Label Grid.Row="0" Grid.Column="0"
+			   Content="Knapsack capacity" />
+
+		<NumericUpDown Grid.Row="0" Grid.Column="1"
+					   Value="{Binding KnapsackCapacity}" />
+	</Grid>
+</UserControl>

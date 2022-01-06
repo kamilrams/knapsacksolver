@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:KnapsackProblem.DesktopApp.ViewModels.Data"
+			 mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="450"
+             x:Class="KnapsackProblem.DesktopApp.Views.SolverOptionsView"
+			 x:DataType="vm:SolverOptionsViewModel">
+	<UserControl.Styles>
+		<Style Selector="Label">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="0,0,10,0" />
+		</Style>
+	</UserControl.Styles>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<!-- Number of generations -->
+		<Label Grid.Row="0" Grid.Column="0"
+			   Content="Number of generations" />
+		
+		<NumericUpDown Grid.Row="0" Grid.Column="1"
+					   Value="{Binding NumberOfGenerations}" />
+
+		<!-- Initial population size -->
+		<Label Grid.Row="1" Grid.Column="0"
+			   Content="Initial population size" />
+
+		<NumericUpDown Grid.Row="1" Grid.Column="1"
+					   Value="{Binding PopulationSize}" />
+
+		<!-- Crossover probability -->
+		<Label Grid.Row="2" Grid.Column="0"
+			   Content="Crossover probability" />
+
+		<NumericUpDown Grid.Row="2" Grid.Column="1"
+					   Value="{Binding CrossoverProbability}" />
+
+		<!-- Mutation probability -->
+		<Label Grid.Row="3" Grid.Column="0"
+			   Content="Mutation probability" />
+
+		<NumericUpDown Grid.Row="3" Grid.Column="1"
+					   Value="{Binding MutationProbability}" />
+
+		<!-- Random seed -->
+		<Label Grid.Row="4" Grid.Column="0"
+			   Content="Random seed" />
+
+		<NumericUpDown Grid.Row="4" Grid.Column="1"
+					   Value="{Binding RandomSeed}" />
+					   
+	</Grid>
+</UserControl>

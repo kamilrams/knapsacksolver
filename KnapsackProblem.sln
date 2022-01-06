@@ -13,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1B811B64
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnapsackProblem.Solver.Tests", "KnapsackProblem.Solver.Tests\KnapsackProblem.Solver.Tests.csproj", "{4E179712-8B4B-46BB-B73D-85396F17A429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.InputGenerator", "KnapsackProblem.InputGenerator\KnapsackProblem.InputGenerator.csproj", "{5BEAB05D-101A-45FB-A706-A99D91527A49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnapsackProblem.InputGenerator", "KnapsackProblem.InputGenerator\KnapsackProblem.InputGenerator.csproj", "{5BEAB05D-101A-45FB-A706-A99D91527A49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.InputGenerator.ConsoleApp", "KnapsackProblem.InputGenerator.ConsoleApp\KnapsackProblem.InputGenerator.ConsoleApp.csproj", "{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnapsackProblem.InputGenerator.ConsoleApp", "KnapsackProblem.InputGenerator.ConsoleApp\KnapsackProblem.InputGenerator.ConsoleApp.csproj", "{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem.DesktopApp", "KnapsackProblem.DesktopApp\KnapsackProblem.DesktopApp.csproj", "{BA85E2A7-E982-4E5A-B6E3-9F6DAEEF5878}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA85E2A7-E982-4E5A-B6E3-9F6DAEEF5878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA85E2A7-E982-4E5A-B6E3-9F6DAEEF5878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA85E2A7-E982-4E5A-B6E3-9F6DAEEF5878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA85E2A7-E982-4E5A-B6E3-9F6DAEEF5878}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{4E179712-8B4B-46BB-B73D-85396F17A429} = {1B811B64-2DE3-45F4-99E7-320A35325F0C}
 		{5BEAB05D-101A-45FB-A706-A99D91527A49} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
 		{A94B1D63-80DD-4FAF-A6AF-1BFC0AC7038B} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
+		{BA85E2A7-E982-4E5A-B6E3-9F6DAEEF5878} = {7A1BC281-9A81-49B5-9414-1007AE992FC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54E29528-34DA-4D5D-8D8E-E5E648EBA887}

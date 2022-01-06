@@ -1,0 +1,80 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:KnapsackProblem.DesktopApp.ViewModels"
+		xmlns:views="using:KnapsackProblem.DesktopApp.Views"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="KnapsackProblem.DesktopApp.MainWindow"
+        Title="Knapsack Problem Solver"
+		x:DataType="vm:MainWindowViewModel">
+	<Window.Styles>
+		<Style Selector="Border.InputSection">
+			<Setter Property="Padding" Value="5,10,0,0" />
+			<Setter Property="BorderThickness" Value="0,1,0,0" />
+			<Setter Property="BorderBrush" Value="Black" />
+		</Style>
+	</Window.Styles>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Column="0" Margin="20">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				
+				<RowDefinition Height="10" />
+
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+
+				<RowDefinition Height="10" />
+
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Solver options -->
+			<TextBlock Grid.Row="0" Text="Solver options" />
+			
+			<Border Grid.Row="1" Classes="InputSection">
+				<views:SolverOptionsView DataContext="{Binding SolverOptions}" />
+			</Border>
+
+			<!-- Solver input -->
+			<TextBlock Grid.Row="3" Text="Solver input" />
+
+			<Border Grid.Row="4" Classes="InputSection">
+				<views:SolverInputView DataContext="{Binding SolverInput}" />
+			</Border>
+
+			<!-- Solver runner -->
+			<TextBlock Grid.Row="6" Text="Solver runner" />
+
+			<Border Grid.Row="7" Classes="InputSection">
+				<Button Content="Run solver" />
+			</Border>
+		</Grid>
+		
+		<DataGrid Grid.Column="1"
+				  Items="{Binding SolverInput.AvailableItems}"
+				  AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Item Name"
+									Binding="{Binding Name}"
+									IsReadOnly="True"/>
+				
+				<DataGridTextColumn Header="Weight"
+									Binding="{Binding Weight}"
+									IsReadOnly="True" />
+
+				<DataGridTextColumn Header="Value"
+									Binding="{Binding Value}"
+									IsReadOnly="True" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Window>
