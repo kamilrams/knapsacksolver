@@ -1,14 +1,18 @@
 ﻿namespace KnapsackProblem.DesktopApp.ViewModels
 {
     using System;
+    using System.Drawing;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Toolkit.Mvvm.ComponentModel;
     using Microsoft.Toolkit.Mvvm.Input;
     using Avalonia.Collections;
+    using Avalonia.Controls.ApplicationLifetimes;
+    using ScottPlot;
     using KnapsackProblem.DesktopApp.ViewModels.Data;
     using KnapsackProblem.Solver;
     using KnapsackProblem.Solver.Model;
+    using KnapsackProblem.DesktopApp.Views;
 
     public enum SolverProcessingState
     {
@@ -20,8 +24,8 @@
 
     internal class SolverRunnerViewModel : ObservableObject
     {
-        private readonly SolverOptionsViewModel solverOptions;
-        private readonly SolverInputViewModel solverInput;
+        private SolverOptionsViewModel solverOptions;
+        private SolverInputViewModel solverInput;
 
         private GenerationViewModel? finalSolution;
         private SolverProcessingState processingState;
@@ -57,6 +61,28 @@
             this.RunSolverCommand = new AsyncRelayCommand(this.ExecuteRunSolverCommand);
         }
 
+        public void SetupPlot(Plot plot)
+        {
+            plot.Title("Solutions over generations", false);
+
+            var generations = this.AllGenerations.Select(generation => (double)generation.Number).ToArray();
+            var values = this.AllGenerations.Select(generation => generation.GetTotalValue()).ToArray();
+            var weights = this.AllGenerations.Select(generation => generation.GetTotalWeight()).ToArray();
+
+            plot.AddScatter(generations, values, label: "Total value of the selected items");
+            plot.AddScatter(generations, weights, label: "Total weight of the selected items");
+
+            plot.AddHorizontalLine(this.solverInput.KnapsackCapacity,
+                color: Color.Red,
+                style: LineStyle.Dash,
+                label: "Backpack capacity");
+
+            plot.XAxis.Label("Generation");
+            plot.XAxis.ManualTickSpacing(1.0);
+
+            plot.Legend();
+        }
+
         private async Task ExecuteRunSolverCommand()
         {
             this.FinalSolution = null;
@@ -72,6 +98,8 @@
 
                 this.FinalSolution = new GenerationViewModel(result.FinalSolution);
                 this.AllGenerations.AddRange(result.AllGenerations.Select(item => new GenerationViewModel(item)));
+
+                this.ShowResultsWindow();
             }
             catch (Exception ex)
             {
@@ -90,6 +118,16 @@
 
                 return solver.Solve(input);
             });
+        }
+
+        private void ShowResultsWindow()
+        {
+            var window = new SolverResultsWindow(this);
+
+            if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                window.ShowDialog(desktop.MainWindow);
+            }
         }
     }
 }

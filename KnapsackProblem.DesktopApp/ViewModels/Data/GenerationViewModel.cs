@@ -26,5 +26,15 @@
             this.Number = generation.Number;
             this.Solution.AddRange(solutionItems);
         }
+
+        public double GetTotalValue()
+        {
+            return this.Solution.Sum(item => item.Value);
+        }
+
+        public double GetTotalWeight()
+        {
+            return this.Solution.Sum(item => item.Weight);
+        }
     }
 }
