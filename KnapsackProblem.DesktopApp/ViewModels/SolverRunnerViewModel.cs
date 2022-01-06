@@ -66,8 +66,8 @@
             plot.Title("Solutions over generations", false);
 
             var generations = this.AllGenerations.Select(generation => (double)generation.Number).ToArray();
-            var values = this.AllGenerations.Select(generation => generation.GetTotalValue()).ToArray();
-            var weights = this.AllGenerations.Select(generation => generation.GetTotalWeight()).ToArray();
+            var values = this.AllGenerations.Select(generation => generation.TotalValue).ToArray();
+            var weights = this.AllGenerations.Select(generation => generation.TotalWeight).ToArray();
 
             plot.AddScatter(generations, values, label: "Total value of the selected items");
             plot.AddScatter(generations, weights, label: "Total weight of the selected items");

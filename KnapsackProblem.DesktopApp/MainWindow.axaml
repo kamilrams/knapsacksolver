@@ -59,23 +59,24 @@
 						Command="{Binding SolverRunner.RunSolverCommand}" />
 			</Border>
 		</Grid>
-		
-		<DataGrid Grid.Column="1"
-				  Items="{Binding SolverInput.AvailableItems}"
-				  AutoGenerateColumns="False">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Item Name"
-									Binding="{Binding Name}"
-									IsReadOnly="True"/>
-				
-				<DataGridTextColumn Header="Weight"
-									Binding="{Binding Weight}"
-									IsReadOnly="True" />
 
-				<DataGridTextColumn Header="Value"
-									Binding="{Binding Value}"
-									IsReadOnly="True" />
-			</DataGrid.Columns>
-		</DataGrid>
+		<ScrollViewer Grid.Column="1">
+			<DataGrid Items="{Binding SolverInput.AvailableItems}"
+					  AutoGenerateColumns="False">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Item Name"
+										Binding="{Binding Name}"
+										IsReadOnly="True"/>
+
+					<DataGridTextColumn Header="Weight"
+										Binding="{Binding Weight}"
+										IsReadOnly="True" />
+
+					<DataGridTextColumn Header="Value"
+										Binding="{Binding Value}"
+										IsReadOnly="True" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</ScrollViewer>
 	</Grid>
 </Window>

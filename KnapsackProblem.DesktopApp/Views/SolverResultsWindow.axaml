@@ -7,5 +7,78 @@
         x:Class="KnapsackProblem.DesktopApp.Views.SolverResultsWindow"
         Title="SolverResultsWindow"
 		Topmost="True">
-	<ScottPlot:AvaPlot Name="AvaPlot1"/>
+	<Window.Styles>
+		<Style Selector="Label.SummaryLabel">
+			<Setter Property="Margin" Value="0 0 10 0" />
+		</Style>
+	</Window.Styles>
+	<TabControl>
+		<TabItem Header="Diagram">
+			<ScottPlot:AvaPlot Name="AvaPlot1"/>
+		</TabItem>
+
+		<TabItem Header="Table">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<Grid Grid.Row="0" Margin="0 20 0 20">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Items count -->
+					<Label Grid.Row="0" Grid.Column="0"
+						   Classes="SummaryLabel"
+						   Content="Selected items count" />
+					
+					<Label Grid.Row="0" Grid.Column="1"
+						   Content="{Binding FinalSolution.Solution.Count, Mode=OneWay}" />
+
+					<!-- Total value -->
+					<Label Grid.Row="1" Grid.Column="0"
+						   Classes="SummaryLabel"
+						   Content="Total value" />
+
+					<Label Grid.Row="1" Grid.Column="1"
+						   Content="{Binding FinalSolution.TotalValue, Mode=OneWay}" />
+
+					<!-- Total weight -->
+					<Label Grid.Row="2" Grid.Column="0"
+						   Classes="SummaryLabel"
+						   Content="Total weight" />
+
+					<Label Grid.Row="2" Grid.Column="1"
+						   Content="{Binding FinalSolution.TotalWeight, Mode=OneWay}" />
+				</Grid>
+
+				<ScrollViewer Grid.Row="1">
+					<DataGrid Items="{Binding FinalSolution.Solution}"
+						  AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Item Name"
+												Binding="{Binding Name}"
+												IsReadOnly="True"/>
+
+							<DataGridTextColumn Header="Weight"
+												Binding="{Binding Weight}"
+												IsReadOnly="True" />
+
+							<DataGridTextColumn Header="Value"
+												Binding="{Binding Value}"
+												IsReadOnly="True" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</ScrollViewer>
+			</Grid>
+		</TabItem>
+	</TabControl>
 </Window>

@@ -17,6 +17,10 @@
 
         public AvaloniaList<KnapsackItemViewModel> Solution { get; } = new AvaloniaList<KnapsackItemViewModel>();
 
+        public double TotalValue => this.Solution.Sum(item => item.Value);
+
+        public double TotalWeight => this.Solution.Sum(item => item.Weight);
+
         public GenerationViewModel() { }
 
         public GenerationViewModel(Generation generation)
@@ -25,16 +29,6 @@
 
             this.Number = generation.Number;
             this.Solution.AddRange(solutionItems);
-        }
-
-        public double GetTotalValue()
-        {
-            return this.Solution.Sum(item => item.Value);
-        }
-
-        public double GetTotalWeight()
-        {
-            return this.Solution.Sum(item => item.Weight);
         }
     }
 }
