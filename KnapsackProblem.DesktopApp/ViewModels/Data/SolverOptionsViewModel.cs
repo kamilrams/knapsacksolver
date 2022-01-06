@@ -1,5 +1,6 @@
 ﻿namespace KnapsackProblem.DesktopApp.ViewModels.Data
 {
+    using KnapsackProblem.Solver.Model;
     using Microsoft.Toolkit.Mvvm.ComponentModel;
 
     internal class SolverOptionsViewModel : ObservableObject
@@ -38,6 +39,17 @@
         {
             get => this.randomSeed;
             set => SetProperty(ref this.randomSeed, value);
+        }
+
+        public SolverOptionsViewModel() { }
+
+        public SolverOptionsViewModel(SolverOptions solverOptions)
+        {
+            this.NumberOfGenerations = solverOptions.NumberOfGenerations;
+            this.PopulationSize = solverOptions.PopulationSize;
+            this.CrossoverProbability = solverOptions.CrossoverProbability;
+            this.MutationProbability = solverOptions.MutationProbability;
+            this.RandomSeed = solverOptions.RandomSeed;
         }
     }
 }

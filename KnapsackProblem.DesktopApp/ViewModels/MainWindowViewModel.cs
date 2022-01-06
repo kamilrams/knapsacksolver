@@ -8,22 +8,34 @@
     using Microsoft.Toolkit.Mvvm.ComponentModel;
     using Avalonia.Collections;
     using KnapsackProblem.DesktopApp.ViewModels.Data;
+    using KnapsackProblem.Solver.Model;
 
     internal class MainWindowViewModel : ObservableObject
     {
-        public SolverInputViewModel SolverInput { get; } = new SolverInputViewModel(); 
+        public SolverOptionsViewModel SolverOptions { get; }
 
-        public SolverOptionsViewModel SolverOptions { get; } = new SolverOptionsViewModel();
+        public SolverInputViewModel SolverInput { get; }
 
         public AvaloniaList<GenerationViewModel> SolverResults { get; } = new AvaloniaList<GenerationViewModel>();
 
         public MainWindowViewModel()
         {
-            this.SolverInput.AvailableItems.Add(new KnapsackItemViewModel("First item", 10.0, 10.0));
-            this.SolverInput.AvailableItems.Add(new KnapsackItemViewModel("Second item", 50.0, 42.0));
-            this.SolverInput.AvailableItems.Add(new KnapsackItemViewModel("Third item", 34.0, 60.0));
-            this.SolverInput.AvailableItems.Add(new KnapsackItemViewModel("Fourth item", 23, 7.0));
-            this.SolverInput.AvailableItems.Add(new KnapsackItemViewModel("Fiveth item", 4.0, 15.0));
+            var solverOptions = KnapsackProblem.Solver.Model.SolverOptions.Default;
+            var solverInput = new KnapsackProblem.Solver.Model.SolverInput
+            {
+                KnapsackCapacity = 20.0,
+                AvailableItems = new List<KnapsackItem>
+                {
+                    new KnapsackItem("First item", 10.0, 10.0),
+                    new KnapsackItem("Second item", 50.0, 42.0),
+                    new KnapsackItem("Third item", 34.0, 60.0),
+                    new KnapsackItem("Fourth item", 23, 7.0),
+                    new KnapsackItem("Fiveth item", 4.0, 15.0),
+                }
+            };
+
+            this.SolverOptions = new SolverOptionsViewModel(solverOptions);
+            this.SolverInput = new SolverInputViewModel(solverInput);
         }
     }
 }
