@@ -27,6 +27,7 @@
 			   Content="Knapsack capacity" />
 
 		<NumericUpDown Grid.Row="0" Grid.Column="1"
-					   Value="{Binding KnapsackCapacity}" />
+					   Value="{Binding KnapsackCapacity}"
+					   Minimum="0" />
 	</Grid>
 </UserControl>

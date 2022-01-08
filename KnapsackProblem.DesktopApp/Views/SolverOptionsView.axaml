@@ -39,14 +39,18 @@
 			   Content="Number of generations" />
 		
 		<NumericUpDown Grid.Row="0" Grid.Column="1"
-					   Value="{Binding NumberOfGenerations}" />
+					   Value="{Binding NumberOfGenerations}"
+					   Minimum="3"
+					   Maximum="100" />
 
 		<!-- Initial population size -->
 		<Label Grid.Row="1" Grid.Column="0"
 			   Content="Initial population size" />
 
 		<NumericUpDown Grid.Row="1" Grid.Column="1"
-					   Value="{Binding InitialPopulationSize}" />
+					   Value="{Binding InitialPopulationSize}"
+					   Minimum="5"
+					   Maximum="100" />
 
 		<!-- Initial population quality -->
 		<Label Grid.Row="2" Grid.Column="0"
@@ -77,6 +81,7 @@
 			   Content="Random seed" />
 
 		<NumericUpDown Grid.Row="5" Grid.Column="1"
-					   Value="{Binding RandomSeed}" />
+					   Value="{Binding RandomSeed}"
+					   Minimum="0" />
 	</Grid>
 </UserControl>
