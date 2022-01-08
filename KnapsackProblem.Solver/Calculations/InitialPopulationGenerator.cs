@@ -1,38 +1,52 @@
 ﻿namespace KnapsackProblem.Solver.Calculations
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using KnapsackProblem.Solver.Model;
 
     internal class InitialPopulationGenerator
     {
-        private readonly Dictionary<int, KnapsackItem> itemsDatabase;
+        private readonly ChromosomeFactory chromosomeFactory;
+        private readonly FitnessScoreCalculator scoreCalculator;
         private readonly SolverOptions options;
-        private readonly Random random;
 
-        public InitialPopulationGenerator(Dictionary<int, KnapsackItem> itemsDatabase, SolverOptions options, Random random)
+        public InitialPopulationGenerator(ChromosomeFactory chromosomeFactory, FitnessScoreCalculator scoreCalculator,
+            SolverOptions options)
         {
-            this.itemsDatabase = itemsDatabase;
+            this.chromosomeFactory = chromosomeFactory;
+            this.scoreCalculator = scoreCalculator;
             this.options = options;
-            this.random = random;
         }
 
         public List<Chromosome> CreateInitialPopulation()
         {
-            var chromosomeFactory = new ChromosomeFactory(itemsDatabase, random);
             var initialPopulation = new List<Chromosome>();
 
-            for (var i = 0; i < options.InitialPopulationSize; i++)
-            {
-                var chromosome = chromosomeFactory.CreateRandom();
+            var minimumNumberOfCorrectSolutions = (int) (this.options.InitialPopulationSize * this.options.InitialPopulationQuality);
 
-                initialPopulation.Add(chromosome);
+            while (initialPopulation.Count != this.options.InitialPopulationSize)
+            {
+                var chromosome = this.chromosomeFactory.CreateRandom();
+
+                if (initialPopulation.Count >= minimumNumberOfCorrectSolutions)
+                {
+                    initialPopulation.Add(chromosome);
+                    continue;
+                }
+
+                if (this.IsRepresentingCorrectSolution(chromosome))
+                {
+                    initialPopulation.Add(chromosome);
+                }
             }
 
             return initialPopulation;
+        }
+
+        private bool IsRepresentingCorrectSolution(Chromosome chromosome)
+        {
+            var score = this.scoreCalculator.CalculateFitnessScore(chromosome);
+
+            return score > 0;
         }
     }
 }

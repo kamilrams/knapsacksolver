@@ -1,12 +1,13 @@
 ﻿namespace KnapsackProblem.DesktopApp.ViewModels.Data
 {
-    using KnapsackProblem.Solver.Model;
     using Microsoft.Toolkit.Mvvm.ComponentModel;
+    using KnapsackProblem.Solver.Model;
 
     internal class SolverOptionsViewModel : ObservableObject
     {
         private int numberOfGenerations;
         private int initialPopulationSize;
+        private double initialPopulationQuality;
         private double crossoverProbability;
         private double mutationProbability;
         private int randomSeed;
@@ -21,6 +22,12 @@
         {
             get => this.initialPopulationSize;
             set => this.SetProperty(ref this.initialPopulationSize, value);
+        }
+
+        public double InitialPopulationQuality
+        {
+            get => this.initialPopulationQuality;
+            set => this.SetProperty(ref this.initialPopulationQuality, value);
         }
 
         public double CrossoverProbability
@@ -47,6 +54,7 @@
         {
             this.NumberOfGenerations = solverOptions.NumberOfGenerations;
             this.InitialPopulationSize = solverOptions.InitialPopulationSize;
+            this.InitialPopulationQuality = solverOptions.InitialPopulationQuality;
             this.CrossoverProbability = solverOptions.CrossoverProbability;
             this.MutationProbability = solverOptions.MutationProbability;
             this.RandomSeed = solverOptions.RandomSeed;
@@ -58,6 +66,7 @@
             {
                 NumberOfGenerations = this.NumberOfGenerations,
                 InitialPopulationSize = this.InitialPopulationSize,
+                InitialPopulationQuality = this.InitialPopulationQuality,
                 CrossoverProbability = this.CrossoverProbability,
                 MutationProbability = this.MutationProbability,
                 RandomSeed = this.RandomSeed

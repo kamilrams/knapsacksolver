@@ -11,9 +11,17 @@
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="Margin" Value="0,0,10,0" />
 		</Style>
+
+		<Style Selector="NumericUpDown.Fractional">
+			<Setter Property="Increment" Value="0.01" />
+			<Setter Property="FormatString" Value="F2" />
+			<Setter Property="Minimum" Value="0.01" />
+			<Setter Property="Maximum" Value="0.99" />
+		</Style>
 	</UserControl.Styles>
 	<Grid>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -40,26 +48,35 @@
 		<NumericUpDown Grid.Row="1" Grid.Column="1"
 					   Value="{Binding InitialPopulationSize}" />
 
-		<!-- Crossover probability -->
+		<!-- Initial population quality -->
 		<Label Grid.Row="2" Grid.Column="0"
-			   Content="Crossover probability" />
+			   Content="Initial population quality" />
 
 		<NumericUpDown Grid.Row="2" Grid.Column="1"
-					   Value="{Binding CrossoverProbability}" />
+					   Value="{Binding InitialPopulationQuality}"
+					   Classes="Fractional" />
 
-		<!-- Mutation probability -->
+		<!-- Crossover probability -->
 		<Label Grid.Row="3" Grid.Column="0"
-			   Content="Mutation probability" />
+			   Content="Crossover probability" />
 
 		<NumericUpDown Grid.Row="3" Grid.Column="1"
-					   Value="{Binding MutationProbability}" />
+					   Value="{Binding CrossoverProbability}"
+					   Classes="Fractional" />
 
-		<!-- Random seed -->
+		<!-- Mutation probability -->
 		<Label Grid.Row="4" Grid.Column="0"
-			   Content="Random seed" />
+			   Content="Mutation probability" />
 
 		<NumericUpDown Grid.Row="4" Grid.Column="1"
+					   Value="{Binding MutationProbability}"
+					   Classes="Fractional" />
+
+		<!-- Random seed -->
+		<Label Grid.Row="5" Grid.Column="0"
+			   Content="Random seed" />
+
+		<NumericUpDown Grid.Row="5" Grid.Column="1"
 					   Value="{Binding RandomSeed}" />
-					   
 	</Grid>
 </UserControl>

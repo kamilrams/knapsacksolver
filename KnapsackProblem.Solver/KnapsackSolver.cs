@@ -12,6 +12,7 @@
         private readonly Random random;
 
         private Dictionary<int, KnapsackItem> itemsDatabase;
+        private FitnessScoreCalculator scoreCalculator;
         private List<Chromosome> initialPopulation;
 
         public KnapsackSolver(SolverOptions options)
@@ -22,15 +23,16 @@
 
         public SolverResult Solve(SolverInput input)
         {
-            this.itemsDatabase = CreateItemsDatabase(input);
-            this.initialPopulation = CreateInitialPopulation(this.itemsDatabase, this.options, this.random);
+            this.itemsDatabase = this.CreateItemsDatabase(input);
+            this.scoreCalculator = new FitnessScoreCalculator(this.itemsDatabase, input.KnapsackCapacity);
+            this.initialPopulation = this.CreateInitialPopulation();
 
             var generations = new List<Generation>();
             var currentPopulation = this.initialPopulation;
 
             for (var i = 0; i < this.options.NumberOfGenerations; i++)
             {
-                var ratedChromosomes = CalculateFitnessScore(this.itemsDatabase, currentPopulation, input);
+                var ratedChromosomes = this.CalculateFitnessScore(currentPopulation);
 
                 var maximumParentsCount = this.options.InitialPopulationSize / 2;
                 var parentSelector = new ParentSelector();
@@ -42,7 +44,7 @@
                 var mutation = new Mutation(this.random, this.options);
                 var mutated = mutation.GetResult(childrens);
 
-                var bestChromosome = CalculateFitnessScore(this.itemsDatabase, currentPopulation, input)
+                var bestChromosome = this.CalculateFitnessScore(currentPopulation)
                     .OrderByDescending(item => item.FitnessScore)
                     .Select(item => item.Chromosome)
                     .First();
@@ -65,7 +67,7 @@
             };
         }
 
-        private static Dictionary<int, KnapsackItem> CreateItemsDatabase(SolverInput input)
+        private Dictionary<int, KnapsackItem> CreateItemsDatabase(SolverInput input)
         {
             var itemsDatabase = new Dictionary<int,KnapsackItem>();
 
@@ -77,21 +79,21 @@
             return itemsDatabase;
         }
 
-        private static List<Chromosome> CreateInitialPopulation(Dictionary<int, KnapsackItem> itemsDatabase, SolverOptions options, Random random)
+        private List<Chromosome> CreateInitialPopulation()
         {
-            var populationGenerator = new InitialPopulationGenerator(itemsDatabase, options, random);
+            var chromosomeFactory = new ChromosomeFactory(this.itemsDatabase, this.random);
+            var populationGenerator = new InitialPopulationGenerator(chromosomeFactory, this.scoreCalculator, this.options);
 
             return populationGenerator.CreateInitialPopulation();
         }
 
-        private static List<RatedChromosome> CalculateFitnessScore(Dictionary<int, KnapsackItem> itemsDatabase, List<Chromosome> population, SolverInput input)
+        private List<RatedChromosome> CalculateFitnessScore(List<Chromosome> population)
         {
-            var fitnessScoreCalculator = new FitnessScoreCalculator(itemsDatabase, input.KnapsackCapacity);
             var result = new List<RatedChromosome>();
 
             foreach (var item in population)
             {
-                var fitnessScore = fitnessScoreCalculator.CalculateFitnessScore(item);
+                var fitnessScore = this.scoreCalculator.CalculateFitnessScore(item);
                 result.Add(new RatedChromosome(item, fitnessScore));
             }
 
