@@ -1,7 +1,6 @@
 ﻿namespace KnapsackProblem.Solver.Tests
 {
     using System.Collections.Generic;
-    using System.Linq;
     using NUnit.Framework;
     using KnapsackProblem.Solver.Model;
 
@@ -34,12 +33,13 @@
             };
 
             var result = solver.Solve(input);
-            var totalWeight = result.FinalSolution.Solution.Sum(item => item.Weight);
-            var totalValue = result.FinalSolution.Solution.Sum(item => item.Value);
+            var bestResult = result.GetBestResult();
 
-            Assert.IsNotEmpty(result.FinalSolution.Solution);
-            Assert.AreEqual(options.NumberOfGenerations, result.AllGenerations.Count);
-            Assert.IsTrue(totalWeight <= input.KnapsackCapacity);
+            Assert.IsTrue(bestResult.HasCorrectSolution);
+            Assert.IsNotEmpty(bestResult.Solution);
+            Assert.AreEqual(options.NumberOfGenerations, result.Generations.Count);
+            Assert.IsTrue(bestResult.TotalWeight <= input.KnapsackCapacity);
+            Assert.IsTrue(bestResult.TotalValue > 0);
         }
     }
 }

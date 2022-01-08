@@ -27,7 +27,7 @@
             this.scoreCalculator = new FitnessScoreCalculator(this.itemsDatabase, input.KnapsackCapacity);
             this.initialPopulation = this.CreateInitialPopulation();
 
-            var generations = new List<Generation>();
+            var generationResults = new List<GenerationResult>();
             var currentPopulation = this.initialPopulation;
 
             for (var i = 0; i < this.options.NumberOfGenerations; i++)
@@ -46,24 +46,20 @@
 
                 var bestChromosome = this.CalculateFitnessScore(currentPopulation)
                     .OrderByDescending(item => item.FitnessScore)
-                    .Select(item => item.Chromosome)
                     .First();
 
-                var generation = new Generation
-                {
-                    Number = i,
-                    Solution = bestChromosome.Decode(this.itemsDatabase)
-                };
+                var generationResult = new GenerationResult(i,
+                    bestChromosome.FitnessScore > 0,
+                    bestChromosome.Chromosome.Decode(this.itemsDatabase));
 
-                generations.Add(generation);
+                generationResults.Add(generationResult);
 
                 currentPopulation = mutated;
             }
 
             return new SolverResult
             {
-                FinalSolution = generations.Last(),
-                AllGenerations = generations
+                Generations = generationResults
             };
         }
 

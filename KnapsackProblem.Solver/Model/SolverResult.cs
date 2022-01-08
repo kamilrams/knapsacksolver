@@ -1,11 +1,19 @@
 ﻿namespace KnapsackProblem.Solver.Model
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class SolverResult
     {
-        public Generation FinalSolution { get; set; }
+        public IList<GenerationResult> Generations { get; set; }
 
-        public IList<Generation> AllGenerations { get; set; }
+        public GenerationResult GetBestResult()
+        {
+            return this.Generations
+                .Where(generation => generation.HasCorrectSolution)
+                .OrderByDescending(generation => generation.TotalValue)
+                .ThenByDescending(generation => generation.Number)
+                .First();
+        }
     }
 }

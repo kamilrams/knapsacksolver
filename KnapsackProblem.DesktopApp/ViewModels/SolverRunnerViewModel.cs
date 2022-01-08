@@ -27,15 +27,15 @@
         private SolverOptionsViewModel solverOptions;
         private SolverInputViewModel solverInput;
 
-        private GenerationViewModel? finalSolution;
+        private GenerationResultViewModel? finalSolution;
         private SolverProcessingState processingState;
         private string? errorMessage;
 
         public AsyncRelayCommand RunSolverCommand { get; }
 
-        public AvaloniaList<GenerationViewModel> AllGenerations { get; } = new AvaloniaList<GenerationViewModel>();
+        public AvaloniaList<GenerationResultViewModel> AllGenerations { get; } = new AvaloniaList<GenerationResultViewModel>();
 
-        public GenerationViewModel? FinalSolution
+        public GenerationResultViewModel? FinalSolution
         {
             get => this.finalSolution;
             set => this.SetProperty(ref this.finalSolution, value);
@@ -96,8 +96,8 @@
 
                 this.ProcessingState = SolverProcessingState.Completed;
 
-                this.FinalSolution = new GenerationViewModel(result.FinalSolution);
-                this.AllGenerations.AddRange(result.AllGenerations.Select(item => new GenerationViewModel(item)));
+                this.FinalSolution = new GenerationResultViewModel(result.GetBestResult());
+                this.AllGenerations.AddRange(result.Generations.Select(item => new GenerationResultViewModel(item)));
 
                 this.ShowResultsWindow();
             }

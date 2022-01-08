@@ -29,34 +29,43 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 
-					<!-- Items count -->
+					<!-- Generation -->
 					<Label Grid.Row="0" Grid.Column="0"
+						   Classes="SummaryLabel"
+						   Content="Generation" />
+
+					<Label Grid.Row="0" Grid.Column="1"
+						   Content="{Binding FinalSolution.Number}" />
+
+					<!-- Items count -->
+					<Label Grid.Row="1" Grid.Column="0"
 						   Classes="SummaryLabel"
 						   Content="Selected items count" />
 					
-					<Label Grid.Row="0" Grid.Column="1"
+					<Label Grid.Row="1" Grid.Column="1"
 						   Content="{Binding FinalSolution.Solution.Count, Mode=OneWay}" />
 
 					<!-- Total value -->
-					<Label Grid.Row="1" Grid.Column="0"
+					<Label Grid.Row="2" Grid.Column="0"
 						   Classes="SummaryLabel"
 						   Content="Total value" />
 
-					<Label Grid.Row="1" Grid.Column="1"
+					<Label Grid.Row="2" Grid.Column="1"
 						   Content="{Binding FinalSolution.TotalValue, Mode=OneWay}" />
 
 					<!-- Total weight -->
-					<Label Grid.Row="2" Grid.Column="0"
+					<Label Grid.Row="3" Grid.Column="0"
 						   Classes="SummaryLabel"
 						   Content="Total weight" />
 
-					<Label Grid.Row="2" Grid.Column="1"
+					<Label Grid.Row="3" Grid.Column="1"
 						   Content="{Binding FinalSolution.TotalWeight, Mode=OneWay}" />
 				</Grid>
 
