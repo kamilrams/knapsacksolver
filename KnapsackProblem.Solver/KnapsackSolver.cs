@@ -23,6 +23,8 @@
 
         public SolverResult Solve(SolverInput input)
         {
+            this.ValidateInput(input);
+
             this.itemsDatabase = this.CreateItemsDatabase(input);
             this.scoreCalculator = new FitnessScoreCalculator(this.itemsDatabase, input.KnapsackCapacity);
             this.initialPopulation = this.CreateInitialPopulation();
@@ -61,6 +63,19 @@
             {
                 Generations = generationResults
             };
+        }
+
+        private void ValidateInput(SolverInput input)
+        {
+            var minimumAllowedCapacity = input.AvailableItems
+                .Min(item => item.Weight);
+
+            if (input.KnapsackCapacity >= minimumAllowedCapacity)
+            {
+                return;
+            }
+
+            throw new InvalidOperationException("The provided knapsack capacity is too small");
         }
 
         private Dictionary<int, KnapsackItem> CreateItemsDatabase(SolverInput input)
