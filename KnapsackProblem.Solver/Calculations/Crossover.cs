@@ -20,7 +20,7 @@
         {
             var childrens = new List<Chromosome>();
 
-            for (var j = 0; j < this.options.PopulationSize / 2; j++)
+            for (var j = 0; j < this.options.InitialPopulationSize / 2; j++)
             {
                 var firstParent = parentsPool.ElementAt(this.random.Next(parentsPool.Count));
                 var otherParents = parentsPool.Where(parent => parent != firstParent).ToList();

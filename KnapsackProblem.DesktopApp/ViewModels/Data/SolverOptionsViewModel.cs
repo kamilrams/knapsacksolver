@@ -6,7 +6,7 @@
     internal class SolverOptionsViewModel : ObservableObject
     {
         private int numberOfGenerations;
-        private int populationSize;
+        private int initialPopulationSize;
         private double crossoverProbability;
         private double mutationProbability;
         private int randomSeed;
@@ -17,10 +17,10 @@
             set => this.SetProperty(ref this.numberOfGenerations, value);
         }
 
-        public int PopulationSize
+        public int InitialPopulationSize
         {
-            get => this.populationSize;
-            set => this.SetProperty(ref this.populationSize, value);
+            get => this.initialPopulationSize;
+            set => this.SetProperty(ref this.initialPopulationSize, value);
         }
 
         public double CrossoverProbability
@@ -46,7 +46,7 @@
         public SolverOptionsViewModel(SolverOptions solverOptions)
         {
             this.NumberOfGenerations = solverOptions.NumberOfGenerations;
-            this.PopulationSize = solverOptions.PopulationSize;
+            this.InitialPopulationSize = solverOptions.InitialPopulationSize;
             this.CrossoverProbability = solverOptions.CrossoverProbability;
             this.MutationProbability = solverOptions.MutationProbability;
             this.RandomSeed = solverOptions.RandomSeed;
@@ -57,7 +57,7 @@
             return new SolverOptions
             {
                 NumberOfGenerations = this.NumberOfGenerations,
-                PopulationSize = this.PopulationSize,
+                InitialPopulationSize = this.InitialPopulationSize,
                 CrossoverProbability = this.CrossoverProbability,
                 MutationProbability = this.MutationProbability,
                 RandomSeed = this.RandomSeed

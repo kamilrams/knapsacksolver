@@ -6,7 +6,7 @@
     {
         public int NumberOfGenerations { get; set; }
 
-        public int PopulationSize { get; set; }
+        public int InitialPopulationSize { get; set; }
 
         public double CrossoverProbability { get; set; }
 
@@ -17,7 +17,7 @@
         public static SolverOptions Default { get; } = new SolverOptions
         {
             NumberOfGenerations = 10,
-            PopulationSize = 20,
+            InitialPopulationSize = 20,
             CrossoverProbability = 0.9,
             MutationProbability = 0.05,
             RandomSeed = DateTime.Now.Millisecond

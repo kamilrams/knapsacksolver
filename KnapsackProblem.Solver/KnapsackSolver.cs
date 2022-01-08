@@ -32,7 +32,7 @@
             {
                 var ratedChromosomes = CalculateFitnessScore(this.itemsDatabase, currentPopulation, input);
 
-                var maximumParentsCount = this.options.PopulationSize / 2;
+                var maximumParentsCount = this.options.InitialPopulationSize / 2;
                 var parentSelector = new ParentSelector();
                 var parentsPool = parentSelector.SelectParents(ratedChromosomes, maximumParentsCount);
 
@@ -79,17 +79,9 @@
 
         private static List<Chromosome> CreateInitialPopulation(Dictionary<int, KnapsackItem> itemsDatabase, SolverOptions options, Random random)
         {
-            var chromosomeFactory = new ChromosomeFactory(itemsDatabase, random);
-            var initialPopulation = new List<Chromosome>();
+            var populationGenerator = new InitialPopulationGenerator(itemsDatabase, options, random);
 
-            for (var i = 0; i < options.PopulationSize; i++)
-            {
-                var chromosome = chromosomeFactory.CreateRandom();
-
-                initialPopulation.Add(chromosome);
-            }
-
-            return initialPopulation;
+            return populationGenerator.CreateInitialPopulation();
         }
 
         private static List<RatedChromosome> CalculateFitnessScore(Dictionary<int, KnapsackItem> itemsDatabase, List<Chromosome> population, SolverInput input)
