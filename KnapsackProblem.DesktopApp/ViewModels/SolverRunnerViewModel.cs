@@ -8,9 +8,6 @@
     using Microsoft.Toolkit.Mvvm.Input;
     using Avalonia.Collections;
     using Avalonia.Controls.ApplicationLifetimes;
-    using Avalonia.Controls;
-    using MessageBox.Avalonia.DTO;
-    using MessageBox.Avalonia;
     using ScottPlot;
     using KnapsackProblem.DesktopApp.ViewModels.Data;
     using KnapsackProblem.Solver;
@@ -109,7 +106,7 @@
                 this.ProcessingState = SolverProcessingState.Error;
                 this.ErrorMessage = ex.Message;
 
-                await ShowErrorMessage("Error", this.ErrorMessage);
+                await MessageBoxHelper.ShowMessage("Error", this.ErrorMessage, MessageBox.Avalonia.Enums.Icon.Error);
             }
         }
 
@@ -133,32 +130,6 @@
             {
                 window.ShowDialog(desktop.MainWindow);
             }
-        }
-
-        private static async Task ShowErrorMessage(string title, string message,
-            MessageBox.Avalonia.Enums.Icon icon = MessageBox.Avalonia.Enums.Icon.Error)
-        {
-            var parameters = new MessageBoxStandardParams
-            {
-                ContentTitle = title,
-                ContentMessage = message,
-                ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
-                Topmost = true,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                Icon = icon,
-                CanResize = false,
-            };
-
-            var lifetime = Avalonia.Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
-
-            if (lifetime == null)
-            {
-                return;
-            }
-
-            var dialog = MessageBoxManager.GetMessageBoxStandardWindow(parameters);
-            
-            await dialog.ShowDialog(lifetime.MainWindow);
         }
     }
 }

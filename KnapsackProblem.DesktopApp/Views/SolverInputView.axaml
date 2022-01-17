@@ -15,6 +15,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<Grid.ColumnDefinitions>
@@ -29,5 +30,12 @@
 		<NumericUpDown Grid.Row="0" Grid.Column="1"
 					   Value="{Binding KnapsackCapacity}"
 					   Minimum="0" />
+
+		<!-- Input item reading -->
+		<Button Grid.Row="1" Grid.Column="1"
+				Command="{Binding LoadFromFileCommand}"
+				Content="Load input file..."
+				HorizontalAlignment="Right"
+				Margin="0 10 0 0" />
 	</Grid>
 </UserControl>

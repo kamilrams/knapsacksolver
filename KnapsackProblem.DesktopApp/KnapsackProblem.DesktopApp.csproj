@@ -19,7 +19,4 @@
   <ItemGroup>
     <ProjectReference Include="..\KnapsackProblem.Solver\KnapsackProblem.Solver.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
 </Project>
