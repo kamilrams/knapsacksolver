@@ -12,6 +12,7 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.11" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.11" />
+    <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.9.5" />
     <PackageReference Include="MessageBox.Avalonia" Version="1.7.1" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="ScottPlot.Avalonia" Version="4.1.29" />

@@ -8,6 +8,9 @@
 
     public class KnapsackSolver
     {
+        public delegate void ProgressReportHandler(ProgressReport report);
+        public event ProgressReportHandler ProgressReport;
+
         private readonly SolverOptions options;
         private readonly Random random;
 
@@ -21,19 +24,25 @@
             this.random = new Random(options.RandomSeed);
         }
 
-        public SolverResult Solve(SolverInput input)
+        public SolverResult Solve(SolverInput input, CancellationToken cancellationToken = default)
         {
             this.ValidateInput(input);
 
+            this.ReportProgress(StepType.CreatingInitialPopulation);
+
             this.itemsDatabase = this.CreateItemsDatabase(input);
             this.scoreCalculator = new FitnessScoreCalculator(this.itemsDatabase, input.KnapsackCapacity);
-            this.initialPopulation = this.CreateInitialPopulation();
+            this.initialPopulation = this.CreateInitialPopulation(cancellationToken);
 
             var generationResults = new List<GenerationResult>();
             var currentPopulation = this.initialPopulation;
 
             for (var i = 0; i < this.options.NumberOfGenerations; i++)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                this.ReportProgress(StepType.ProcessingGeneration, i + 1, this.options.NumberOfGenerations);
+
                 var ratedChromosomes = this.CalculateFitnessScore(currentPopulation);
 
                 var maximumParentsCount = this.options.InitialPopulationSize / 2;
@@ -58,6 +67,10 @@
 
                 currentPopulation = mutated;
             }
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            this.ReportProgress(StepType.WorkCompleted);
 
             return new SolverResult
             {
@@ -90,12 +103,12 @@
             return itemsDatabase;
         }
 
-        private List<Chromosome> CreateInitialPopulation()
+        private List<Chromosome> CreateInitialPopulation(CancellationToken cancellationToken)
         {
             var chromosomeFactory = new ChromosomeFactory(this.itemsDatabase, this.random);
             var populationGenerator = new InitialPopulationGenerator(chromosomeFactory, this.scoreCalculator, this.options);
 
-            return populationGenerator.CreateInitialPopulation();
+            return populationGenerator.CreateInitialPopulation(cancellationToken);
         }
 
         private List<RatedChromosome> CalculateFitnessScore(List<Chromosome> population)
@@ -109,6 +122,18 @@
             }
 
             return result;
+        }
+
+        private void ReportProgress(StepType stepType, int currentStep, int totalSteps)
+        {
+            var progressReport = new ProgressReport(stepType, new Progress(currentStep, totalSteps));
+
+            this.ProgressReport?.Invoke(progressReport);
+        }
+
+        private void ReportProgress(StepType stepType)
+        {
+            this.ReportProgress(stepType, 1, 1);
         }
     }
 }

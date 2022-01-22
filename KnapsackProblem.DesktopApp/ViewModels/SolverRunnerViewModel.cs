@@ -4,6 +4,7 @@
     using System.Drawing;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Threading;
     using Microsoft.Toolkit.Mvvm.ComponentModel;
     using Microsoft.Toolkit.Mvvm.Input;
     using Avalonia.Collections;
@@ -101,6 +102,7 @@
 
                 this.ShowResultsWindow();
             }
+            catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 this.ProcessingState = SolverProcessingState.Error;
@@ -110,16 +112,30 @@
             }
         }
 
-        private Task<SolverResult> SolveAndGetResult()
+        private async Task<SolverResult> SolveAndGetResult()
         {
-            return Task.Run(() =>
-            {
-                var options = this.solverOptions.ToModel();
-                var input = this.solverInput.ToModel();
-                var solver = new KnapsackSolver(options);
+            var options = this.solverOptions.ToModel();
+            var input = this.solverInput.ToModel();
+            var solver = new KnapsackSolver(options);
+            var cts = new CancellationTokenSource();
 
-                return solver.Solve(input);
-            });
+            using var progressIndicator = this.ShowProgressIndicator(solver, cts);
+
+            var result = await Task.Run(() => solver.Solve(input, cts.Token));
+
+            return result;
+        }
+
+        private SolvingProgressIndicator ShowProgressIndicator(KnapsackSolver solver, CancellationTokenSource cts)
+        {
+            var progressIndicator = new SolvingProgressIndicator(solver, cts);
+
+            if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                progressIndicator.ShowDialog(desktop.MainWindow);
+            }
+
+            return progressIndicator;
         }
 
         private void ShowResultsWindow()

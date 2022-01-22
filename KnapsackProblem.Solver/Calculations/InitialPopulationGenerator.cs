@@ -17,7 +17,7 @@
             this.options = options;
         }
 
-        public List<Chromosome> CreateInitialPopulation()
+        public List<Chromosome> CreateInitialPopulation(CancellationToken cancellationToken = default)
         {
             var initialPopulation = new List<Chromosome>();
 
@@ -25,6 +25,8 @@
 
             while (initialPopulation.Count != this.options.InitialPopulationSize)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 var chromosome = this.chromosomeFactory.CreateRandom();
 
                 if (initialPopulation.Count >= minimumNumberOfCorrectSolutions)
