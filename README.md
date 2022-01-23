@@ -88,3 +88,7 @@ Jak uruchomić
 -------------
 - do zbudowania solucji wymagane jest Visual Studio 2022
 - projekt startowy dla aplikacji okienkowej to `KnapsackProblem.DesktopApp`
+
+Dodatkowe linki
+---------------
+- [profil autora na LinkedIn](https://www.linkedin.com/in/kamil-rams-99a0571a1/)
