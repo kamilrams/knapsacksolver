@@ -84,6 +84,15 @@ Opis działania algorytmu
     - znalezienie najlepszego chromosomu w danej generacji, zapamiętanie go, przejście do kolejnej generacji bądź zakończenie działania algorytmu
     - wynikiem algorytmu jest lista przetworzonych generacji z przypisanym najlepszym rozwiązaniem w danej generacji
 
+Zrzuty ekranu
+-------------
+![okno główne programu](./Attachments/Screenshots/main_window.png | width=500)
+
+![prezentacja wyników w formie diagramu](./Attachments/Screenshots/results_diagram.png | width=500)
+
+![prezentacja wyników w formie tabeli](./Attachments/Screenshots/results_table.png | width=500)
+
+
 Jak uruchomić
 -------------
 - do zbudowania solucji wymagane jest Visual Studio 2022
