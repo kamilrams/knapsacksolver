@@ -86,11 +86,15 @@ Opis działania algorytmu
 
 Zrzuty ekranu
 -------------
-![okno główne programu](./Attachments/Screenshots/main_window.png | width=500)
 
-![prezentacja wyników w formie diagramu](./Attachments/Screenshots/results_diagram.png | width=500)
+### Główne okno programu
+![okno główne programu](./Attachments/Screenshots/main_window.png)
 
-![prezentacja wyników w formie tabeli](./Attachments/Screenshots/results_table.png | width=500)
+### Prezentacja wyników w formie diagramu
+![prezentacja wyników w formie diagramu](./Attachments/Screenshots/results_diagram.png)
+
+### Prezentacja wyników w formie tabeli
+![prezentacja wyników w formie tabeli](./Attachments/Screenshots/results_table.png)
 
 
 Jak uruchomić
